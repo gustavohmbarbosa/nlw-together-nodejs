@@ -1,0 +1,19 @@
+{
+  "name": "nlw-together-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:gustavohmbarbosa/nlw-together-nodejs.git",
+  "author": "Gustavo Melo <gustavobarbosa-18@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/serve.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

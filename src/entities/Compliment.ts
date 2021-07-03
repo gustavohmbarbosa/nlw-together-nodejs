@@ -3,7 +3,6 @@ import {
   PrimaryColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
   JoinColumn,
   ManyToOne,
 } from "typeorm";
@@ -20,7 +19,7 @@ class Compliment {
   @Column()
   user_sender: string;
 
-  @JoinColumn({ name: "user_receiver" })
+  @JoinColumn({ name: "user_sender" })
   @ManyToOne(() => User)
   sender: User;
 
@@ -34,7 +33,7 @@ class Compliment {
   @Column()
   tag_id: string;
 
-  @JoinColumn({ name: "user_receiver" })
+  @JoinColumn({ name: "tag_id" })
   @ManyToOne(() => Tag)
   tag: Tag;
 

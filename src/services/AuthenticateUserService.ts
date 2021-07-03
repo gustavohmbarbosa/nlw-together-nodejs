@@ -12,7 +12,10 @@ class AuthenticateUserService {
   async execute({ email, password }: IAuthenticateRequest) {
     const userRepository = getCustomRepository(UserRepository);
 
-    const user = await userRepository.findOne({ email });
+    const user = await userRepository.findOne({
+      select: ["id", "name", "email", "password", "admin"],
+      where: { email },
+    });
     if (!user) {
       throw new Error("Email Or Password incorrect");
     }
@@ -22,11 +25,11 @@ class AuthenticateUserService {
       throw new Error("Email Or Password incorrect");
     }
 
-    const token = sign(
-      { name: user.name, email: user.email },
-      "82a9bd140c4ece1bcfd076dffddfcd75",
-      { subject: user.id, expiresIn: "1d" }
-    );
+    delete user.password;
+    const token = sign({ auth: user }, "82a9bd140c4ece1bcfd076dffddfcd75", {
+      subject: user.id,
+      expiresIn: "1d",
+    });
 
     return token;
   }

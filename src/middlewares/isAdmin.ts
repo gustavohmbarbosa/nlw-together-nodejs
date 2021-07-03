@@ -4,7 +4,7 @@ export function isAdmin(
   response: Response,
   next: NextFunction
 ) {
-  const admin = true;
+  const { admin } = request.auth;
 
   if (admin) {
     return next();
